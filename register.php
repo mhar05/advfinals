@@ -8,7 +8,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (empty(trim($_POST['username']))) {
             $usernameErr = 'Please enter a username';
-        } elseif (!preg_match('/^[a-z\d_]{0-10}$/i', $_POST['username'])) {
+        } elseif (strlen(trim($_POST['username'])) > 10 || !preg_match('/^[a-zA-Z0-9]+$/', $_POST['username'])) {
             $usernameErr = 'Username should consist 10 characters only';
         } else {
             $sql = 'SELECT * FROM users WHERE username = ?';
